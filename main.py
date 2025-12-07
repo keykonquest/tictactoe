@@ -51,9 +51,12 @@ def main():
         elif continue_game:
             tictactoe.player2_turn()
             tictactoe.turns += 1
-            if len(player2.player2_spots) >= 3 and set(win_combo).issubset(player1.player2_spots):
+        for value in range(len(tictactoe.board.LINES)):
+            win_combo = list(tictactoe.board.LINES[value][1])
+            if len(player2.player2_spots) >= 3 and set(win_combo).issubset(player2.player2_spots):
                 print(f"\nPLayer 2 has completed {tictactoe.board.LINES[value][0]}! That's a win!")
                 continue_game = False
+                break
 
     play_again = input("\nWould you like to play again? (Y)es or (N)o\n").upper()
 
